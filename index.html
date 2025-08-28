@@ -401,141 +401,96 @@
         
         /* Skills Section */
         /* Skills Section */
+/* New Skills Section Styling */
 .skills {
-    background: linear-gradient(rgba(67, 97, 238, 0.05), rgba(67, 97, 238, 0.1));
-    padding: 80px 0;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background: var(--light);
 }
 
-.skills-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: space-between;
-}
-
-.skill-category {
-    flex: 1;
-    min-width: 300px;
-}
-
-.skill-category h3 {
-    font-size: 1.5rem;
-    margin-bottom: 25px;
-    color: #4361ee;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
-    text-align: center;
-    position: relative;
-}
-
-.skill-category h3::after {
-    content: '';
-    display: block;
-    width: 50px;
-    height: 3px;
-    background: #4361ee;
-    margin: 10px auto;
-    border-radius: 2px;
-}
-
-.skill-card {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 20px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    position: relative;
+.scroller {
+    max-width: 1200px;
+    margin: 20px auto;
     overflow: hidden;
+    -webkit-mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+    mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
 }
 
-.skill-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(67, 97, 238, 0.1), transparent);
-    transition: all 0.6s ease;
+.scroller-inner {
+    display: flex;
+    flex-wrap: nowrap;
+    width: max-content;
+    gap: 20px;
+    animation: scroll 40s linear infinite;
 }
 
-.skill-card:hover::before {
-    left: 100%;
+@keyframes scroll {
+    to {
+        transform: translate(calc(-50% - 10px)); /* 50% for duplicated content, 10px for half the gap */
+    }
 }
 
-.skill-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(67, 97, 238, 0.2);
-    border-color: #4361ee;
+.scroller[data-direction="right"] {
+    animation-direction: reverse;
 }
 
-.skill-icon {
+/* Pause animation on hover */
+.scroller:hover .scroller-inner {
+    animation-play-state: paused;
+}
+
+.skill-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.skill-logo:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(67, 97, 238, 0.15);
+}
+
+.skill-logo i {
     font-size: 2.5rem;
-    margin-bottom: 15px;
-    display: block;
-    transition: all 0.3s ease;
+    color: var(--primary);
+    transition: transform 0.3s ease;
 }
 
-.skill-card:hover .skill-icon {
-    transform: scale(1.2) rotate(10deg);
+.skill-logo:hover i {
+    transform: scale(1.1) rotate(-5deg);
 }
 
-.skill-name {
+.skill-logo span {
     font-size: 1.1rem;
-    font-weight: 600;
-    color: #333;
-    margin: 0;
+    font-weight: 500;
+    color: var(--dark);
 }
 
-/* Responsive Design */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .skills-content {
-        flex-direction: column;
-        gap: 30px;
+    .scroller {
+        max-width: 100%;
     }
-    
-    .skill-category {
-        min-width: 100%;
+    .skill-logo {
+        padding: 10px 20px;
+        gap: 10px;
     }
-    
-    .skill-card {
-        margin-bottom: 15px;
-        padding: 20px;
-    }
-    
-    .skill-icon {
+    .skill-logo i {
         font-size: 2rem;
     }
-}
-
-/* Animation for skill cards */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
+    .skill-logo span {
+        font-size: 1rem;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    .scroller-inner {
+        animation-duration: 30s; /* Speed up on smaller screens */
     }
 }
-
-.skill-card {
-    animation: fadeInUp 0.6s ease forwards;
-    opacity: 0;
-}
-
-.skill-card:nth-child(1) { animation-delay: 0.1s; }
-.skill-card:nth-child(2) { animation-delay: 0.2s; }
-.skill-card:nth-child(3) { animation-delay: 0.3s; }
-.skill-card:nth-child(4) { animation-delay: 0.4s; }
-.skill-card:nth-child(5) { animation-delay: 0.5s; }
-
-
-
         
         /* Projects Section */
         .projects-grid {
@@ -1256,103 +1211,39 @@
     </section>
     
     <!-- Skills Section -->
-<section id="skills" class="skills">
+
+    
+    <section id="skills" class="skills">
     <div class="container">
         <div class="section-title">
             <h2>My Skills</h2>
         </div>
-        <div class="skills-content">
-            <div class="skill-category">
-                <h3>Frontend Development</h3>
-                <div class="skill-card">
-                    <div class="skill-icon html">🌐</div>
-                    <div class="skill-name">HTML</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon css">🎨</div>
-                    <div class="skill-name">CSS</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon javascript">⚡</div>
-                    <div class="skill-name">JavaScript</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon react">⚛️</div>
-                    <div class="skill-name">React</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon bootstrap">🅱️</div>
-                    <div class="skill-name">Bootstrap</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon react-bootstrap">🎯</div>
-                    <div class="skill-name">React Bootstrap</div>
-                </div>
+        
+        <div class="scroller" data-direction="left" data-speed="slow">
+            <div class="scroller-inner">
+                <div class="skill-logo"><i class="fab fa-html5"></i><span>HTML</span></div>
+                <div class="skill-logo"><i class="fab fa-css3-alt"></i><span>CSS</span></div>
+                <div class="skill-logo"><i class="fab fa-js"></i><span>JavaScript</span></div>
+                <div class="skill-logo"><i class="fab fa-react"></i><span>React</span></div>
+                <div class="skill-logo"><i class="fab fa-python"></i><span>Python</span></div>
+                <div class="skill-logo"><i class="fas fa-database"></i><span>SQL</span></div>
+                <div class="skill-logo"><i class="fas fa-leaf"></i><span>MongoDB</span></div>
+                <div class="skill-logo"><i class="fab fa-java"></i><span>Java</span></div>
             </div>
+        </div>
 
-            <div class="skill-category">
-                <h3>Backend Development</h3>
-                <div class="skill-card">
-                    <div class="skill-icon nodejs">🚀</div>
-                    <div class="skill-name">Node.js</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon python">🐍</div>
-                    <div class="skill-name">Python</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon oop">🏗️</div>
-                    <div class="skill-name">Object Oriented Programming</div>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Database & Storage</h3>
-                <div class="skill-card">
-                    <div class="skill-icon sql">🗄️</div>
-                    <div class="skill-name">SQL</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon mongodb">🍃</div>
-                    <div class="skill-name">MongoDB</div>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Full Stack & Development</h3>
-                <div class="skill-card">
-                    <div class="skill-icon mern">💎</div>
-                    <div class="skill-name">MERN Stack</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon fullstack">🔄</div>
-                    <div class="skill-name">Full Stack React</div>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Tools & Technologies</h3>
-                <div class="skill-card">
-                    <div class="skill-icon github">🔧</div>
-                    <div class="skill-name">GitHub</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon git">📋</div>
-                    <div class="skill-name">Git</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon prompt">🤖</div>
-                    <div class="skill-name">Prompt Engineering</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon excel">📊</div>
-                    <div class="skill-name">Excel</div>
-                </div>
+        <div class="scroller" data-direction="right" data-speed="slow">
+            <div class="scroller-inner">
+                <div class="skill-logo"><i class="fab fa-github"></i><span>GitHub</span></div>
+                 <div class="skill-logo"><i class="fab fa-node-js"></i><span>Node.js</span></div>
+                 <div class="skill-logo"><i class="fas fa-server"></i><span>Express.js</span></div>
+                <div class="skill-logo"><i class="fas fa-robot"></i><span>Prompt Engineering</span></div>
+                <div class="skill-logo"><i class="fas fa-box-open"></i><span>REST APIs</span></div>
+                <div class="skill-logo"><i class="fas fa-file-excel"></i><span>Excel</span></div>
             </div>
         </div>
     </div>
 </section>
-    
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
@@ -1713,7 +1604,7 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.querySelector('.preloader').classList.add('fade-out');
-            }, 1000);
+            }, 100);
         });
         
         // Mobile Menu
@@ -1742,14 +1633,30 @@
         });
         
         // Skills Animation
-        const skillBars = document.querySelectorAll('.skill-progress');
-        
-        const animateSkills = () => {
-            skillBars.forEach(bar => {
-                const targetWidth = bar.getAttribute('data-width');
-                bar.style.width = `${targetWidth}%`;
+        // New Skills Scroller Animation
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollers = document.querySelectorAll('.scroller');
+
+    // If a user prefers reduced motion, stop all animations.
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        addAnimation();
+    }
+
+    function addAnimation() {
+        scrollers.forEach(scroller => {
+            scroller.setAttribute('data-animated', true);
+
+            const scrollerInner = scroller.querySelector('.scroller-inner');
+            const scrollerContent = Array.from(scrollerInner.children);
+
+            scrollerContent.forEach(item => {
+                const duplicatedItem = item.cloneNode(true);
+                duplicatedItem.setAttribute('aria-hidden', true);
+                scrollerInner.appendChild(duplicatedItem);
             });
-        };
+        });
+    }
+});
         // Timeline Animation
         const timelineItems = document.querySelectorAll('.timeline-item');
         
