@@ -449,96 +449,110 @@
                     opacity: 0.8;
                 }
                
-                /* Skills Section */
-                .skills {
-            padding-top: 100px;
-            padding-bottom: 100px;
-            background: var(--light);
-        }
+  /* Skills Section */
+.skills {
+    padding: 100px 0;
+    background: var(--light);
+}
 
-        .scroller {
-            max-width: 1200px;
-            margin: 20px auto;
-            overflow: hidden;
-            -webkit-mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
-            mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
-        }
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
 
-        .scroller-inner {
-            display: flex;
-            flex-wrap: nowrap;
-            width: max-content;
-            gap: 20px;
-            animation: scroll 40s linear infinite;
-        }
+.section-title h2 {
+    font-size: 2.5rem;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+}
 
-        @keyframes scroll {
-            to {
-                transform: translate(calc(-50% - 10px)); /* 50% for duplicated content, 10px for half the gap */
-            }
-        }
+.section-title h2 i {
+    margin-right: 10px;
+    color: var(--primary);
+}
 
-        .scroller[data-direction="right"] {
-            animation-direction: reverse;
-        }
+.section-title p {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+}
 
-        /* Pause animation on hover */
-        .scroller:hover .scroller-inner {
-            animation-play-state: paused;
-        }
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .skill-logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px 30px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-        }
+.skill-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    text-align: center;
+}
 
-        .skill-logo:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.15);
-        }
+.skill-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 15px 30px rgba(67, 97, 238, 0.2);
+}
 
-        .skill-logo i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            transition: transform 0.3s ease;
-        }
+.skill-card i {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    display: block;
+    transition: transform 0.3s ease;
+}
 
-        .skill-logo:hover i {
-            transform: scale(1.1) rotate(-5deg);
-        }
+.skill-card:hover i {
+    transform: scale(1.1);
+}
 
-        .skill-logo span {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--dark);
-        }
+.skill-card h3 {
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .scroller {
-                max-width: 100%;
-            }
-            .skill-logo {
-                padding: 10px 20px;
-                gap: 10px;
-            }
-            .skill-logo i {
-                font-size: 2rem;
-            }
-            .skill-logo span {
-                font-size: 1rem;
-            }
-            .scroller-inner {
-                animation-duration: 30s; /* Speed up on smaller screens */
-            }
-        }
+.skill-card p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .skills {
+        padding: 60px 0;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .skill-card {
+        padding: 1.5rem;
+    }
+    
+    .skill-card i {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
                 /* Projects Section */
                 .projects-grid {
                     display: grid;
@@ -621,6 +635,46 @@
                     font-size: 0.9rem;
                     transition: all 0.3s ease;
                 }
+                .project-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(100, 65, 165, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-overlay i {
+    font-size: 3rem;
+    color: white;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
                
                 .view-live {
                     background: var(--primary);
@@ -1303,39 +1357,126 @@
                     </div>
                 </div>
             </section>
-           
-            <!-- Skills Section -->
-            <section id="skills" class="skills">
-            <div class="container">
-                <div class="section-title">
-                    <h2>My Skills</h2>
-                </div>
-               
-                <div class="scroller" data-direction="left" data-speed="slow">
-                    <div class="scroller-inner">
-                        <div class="skill-logo"><i class="fab fa-html5"></i><span>HTML</span></div>
-                        <div class="skill-logo"><i class="fab fa-css3-alt"></i><span>CSS</span></div>
-                        <div class="skill-logo"><i class="fab fa-js"></i><span>JavaScript</span></div>
-                        <div class="skill-logo"><i class="fab fa-react"></i><span>React</span></div>
-                        <div class="skill-logo"><i class="fab fa-python"></i><span>Python</span></div>
-                        <div class="skill-logo"><i class="fas fa-database"></i><span>SQL</span></div>
-                        <div class="skill-logo"><i class="fas fa-leaf"></i><span>MongoDB</span></div>
-                        <div class="skill-logo"><i class="fab fa-java"></i><span>Java</span></div>
-                    </div>
-                </div>
+         <!-- Skills Section -->
+<section id="skills" class="skills">
+  <div class="container">
+    <div class="section-title">
+      <h2><i class="fas fa-laptop-code"></i> Technical Skills</h2>
+      <p>Technologies I Work With</p>
+    </div>
 
-                <div class="scroller" data-direction="right" data-speed="slow">
-                    <div class="scroller-inner">
-                        <div class="skill-logo"><i class="fab fa-github"></i><span>GitHub</span></div>
-                        <div class="skill-logo"><i class="fab fa-node-js"></i><span>Node.js</span></div>
-                        <div class="skill-logo"><i class="fas fa-server"></i><span>Express.js</span></div>
-                        <div class="skill-logo"><i class="fas fa-robot"></i><span>Prompt Engineering</span></div>
-                        <div class="skill-logo"><i class="fas fa-box-open"></i><span>REST APIs</span></div>
-                        <div class="skill-logo"><i class="fas fa-file-excel"></i><span>Excel</span></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="skills-grid">
+
+      <!-- 🧠 Core Frontend Skills -->
+      <div class="skill-card">
+        <i class="fab fa-html5"></i>
+        <h3>HTML5</h3>
+        <p>Semantic markup and web structure</p>
+      </div>
+      <div class="skill-card">
+        <i class="fab fa-css3-alt"></i>
+        <h3>CSS3</h3>
+        <p>Responsive layouts & animations</p>
+      </div>
+      <div class="skill-card">
+        <i class="fab fa-js"></i>
+        <h3>JavaScript (ES6+)</h3>
+        <p>Dynamic behavior & DOM manipulation</p>
+      </div>
+      <div class="skill-card">
+        <i class="fab fa-react"></i>
+        <h3>React.js</h3>
+        <p>Component-driven frontend development</p>
+      </div>
+      
+
+      <!-- ⚙️ Backend Development -->
+      <div class="skill-card">
+        <i class="fab fa-node-js"></i>
+        <h3>Node.js</h3>
+        <p>Server-side JavaScript environment</p>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-server"></i>
+        <h3>Express.js</h3>
+        <p>RESTful APIs & backend framework</p>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-rocket"></i>
+        <h3>FastAPI</h3>
+        <p>High-performance Python backend</p>
+      </div>
+
+      <!-- 🗃️ Databases -->
+      <div class="skill-card">
+        <i class="fas fa-database"></i>
+        <h3>SQL</h3>
+        <p>Relational database design & queries</p>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-leaf"></i>
+        <h3>MongoDB</h3>
+        <p>NoSQL document-based data handling</p>
+      </div>
+
+      <!-- 🧩 Programming & Problem Solving -->
+      <div class="skill-card">
+        <i class="fab fa-python"></i>
+        <h3>Python</h3>
+        <p>Data structures, algorithms & automation</p>
+      </div>
+      <div class="skill-card">
+        <i class="fab fa-java"></i>
+        <h3>Java</h3>
+        <p>OOP concepts & backend development</p>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-c"></i>
+        <h3>C Language</h3>
+        <p>Core programming logic & fundamentals</p>
+      </div>
+
+      <!-- 🔗 Tools & Platforms -->
+      <div class="skill-card">
+        <i class="fab fa-github"></i>
+        <h3>Git & GitHub</h3>
+        <p>Version control & team collaboration</p>
+      </div>
+      
+      <div class="skill-card">
+        <i class="fas fa-box-open"></i>
+        <h3>REST APIs</h3>
+        <p>Building and integrating APIs</p>
+      </div>
+
+      <!-- 🤖 AI & Emerging Tech -->
+      <div class="skill-card">
+        <i class="fas fa-robot"></i>
+        <h3>Prompt Engineering</h3>
+        <p>AI optimization and custom prompt design</p>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-brain"></i>
+        <h3>Generative AI</h3>
+        <p>Building AI-driven interactive systems</p>
+      </div>
+
+      <!-- 📊 Others -->
+      <div class="skill-card">
+        <i class="fas fa-file-excel"></i>
+        <h3>Excel</h3>
+        <p>Data analysis and spreadsheet automation</p>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-comments"></i>
+        <h3>Communication & Leadership</h3>
+        <p>Effective teamwork & project management</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
         <section id="projects" class="projects">
     <div class="container">
         <div class="section-title">
@@ -1363,26 +1504,24 @@
                 </div>
             </div>
 
-            <div class="project-card">
+
+             <div class="project-card">
                 <div class="project-img">
-                    <img src="weather.png" alt="WeatherBliss Project">
+                    <img src="mindmitra.jpg" alt="mindmitra Project">
                 </div>
                 <div class="project-content">
-                    <h3>WeatherBliss</h3>
-                    <p>A sleek, real-time weather application providing current conditions and forecasts for cities worldwide.</p>
+                    <h3>MindMitra</h3>
+                    <p>MindMitra is an intelligent and empathetic AI-powered virtual companion that engages in meaningful conversations, offering emotional support and daily guidance with human-like understanding and responsiveness.</p>
                     <div class="tech-stack">
                         <span class="tech-tag">React Js</span>
-                        <span class="tech-tag">Tailwind CSS</span>
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">OpenWeather API</span>
+                        <span class="tech-tag">SQL</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://weatherbliss.netlify.app" class="project-link view-live" target="_blank">View Live</a>
-                        <a href="https://github.com/shamithcheerla/weatherbliss" class="project-link view-code" target="_blank">View Code</a>
+                        <a href="https://preview-eym0zo3nkyrk.devv.app/" class="project-link view-live" target="_blank">View Live</a>
+                        <a href="https://github.com/shamithcheerla/stockease" class="project-link view-code" target="_blank">View Code</a>
                     </div>
                 </div>
             </div>
-
             <div class="project-card">
                 <div class="project-img">
                     <img src="codearena1.png" alt="CodeArena Project">
@@ -1409,8 +1548,7 @@
                 </div>
                 <div class="project-content">
                     <h3>ShopWave</h3>
-                    <p>Stock management system for shopkeepers with real-time inventory updates and QR code scanning for stock entry.</p>
-                    <div class="tech-stack">
+                    <p>ShopWave is a dynamic and interactive E-Commerce web platform designed using HTML, CSS, and JavaScript. The website provides users with a seamless and visually appealing shopping experience</p>
                         <span class="tech-tag">React.js</span>
                         <span class="tech-tag">MongoDB</span>
                         <span class="tech-tag">Express.js</span>
@@ -1422,45 +1560,6 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="project-card">
-                <div class="project-img">
-                    <img src="projectmanager.png" alt="Project Management System">
-                </div>
-                <div class="project-content">
-                    <h3>Project Manager</h3>
-                    <p>Project Management System is a web-based tool that helps teams plan, track, and collaborate on projects with task assignments, progress tracking, and real-time updates.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">React.js</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">MongoDB</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://taskmanger-387n.bolt.host/" class="project-link view-live" target="_blank">View Live</a>
-                        <a href="https://github.com/shamithcheerla/projectmanager" class="project-link view-code" target="_blank">View Code</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="project-img">
-                    <img src="socialmedia.png" alt="Social Media Platform">
-                </div>
-                <div class="project-content">
-                    <h3>Social Media Platform</h3>
-                    <p>A Basic Responsive social media UI with user profiles, posts, likes, comments, and follow functionality.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://shamithcheerla.github.io/socialmedia" class="project-link view-live" target="_blank">View Live</a>
-                        <a href="https://github.com/shamithcheerla/socialmedia" class="project-link view-code" target="_blank">View Code</a>
-                    </div>
-                </div>
-            </div>
-
         </div> </div>
 </section>
             
@@ -1584,14 +1683,7 @@
                         <a href="https://www.linkedin.com/learning/certificates/e8ee7a269bdff84fcb94d25aeede18a898f59ae8277a2ddd1a476fb2910b5fd6?trk=share_certificate" class="cert-link" target="_blank">View Certificate <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="certification-card">
-                        <div class="certification-icon">
-                            <img src="gl.jpg" alt="Great Learning" style="width: 150px; height: 150px; object-fit: contain;">
-                        </div>
-                        <h3>Prompt Engineering for ChatGPT</h3>
-                        <p>Great Learning</p>
-                        <a href="https://www.linkedin.com/in/cheerla-shamith-a420472a0/details/certifications/1739714537950/single-media-viewer/?profileId=ACoAAEie-RIBjBfdHRGbZ_tWHR5ddTr1S1zit1Y" class="cert-link" target="_blank">View Certificate <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                    
 
                     <div class="certification-card">
                         <div class="certification-icon">
@@ -1602,14 +1694,6 @@
                         <a href="https://drive.google.com/file/d/10NXjbcxy9cS8sJ3v6MJOKedMorgwxJL-/view?pli=1" class="cert-link" target="_blank">View Certificate <i class="fas fa-arrow-right"></i></a>
                     </div>
                    
-                    <div class="certification-card">
-                        <div class="certification-icon">
-                            <img src="linkedin.png" alt="LinkedIn Logo" style="width: 150px; height: 150px; object-fit: contain;">
-                        </div>
-                        <h3>Microsoft Security Copilot</h3>
-                        <p>Linkedin Learning</p>
-                        <a href="https://moonshot.scaler.com/s/li/op-ioyjLmj" class="cert-link" target="_blank">View Certificate <i class="fas fa-arrow-right"></i></a>
-                    </div>
 
                     <div class="certification-card">
                         <div class="certification-icon">
@@ -1620,23 +1704,8 @@
                         <a href="https://www.coursera.org/account/accomplishments/verify/M47PWD113RTU" class="cert-link" target="_blank">View Certificate <i class="fas fa-arrow-right"></i></a>
                     </div>
                    
-                    <div class="certification-card">
-                        <div class="certification-icon">
-                            <img src="udemy1.png" alt="Python Logo" style="width: 150px; height: 150px; object-fit: contain;">
-                        </div>
-                        <h3>Python for Beginners in Depth</h3>
-                        <p>Udemy</p>
-                        <a href="https://www.udemy.com/certificate/UC-9511c247-7856-40db-8646-008a5fe5abc7/?utm_campaign=email&utm_medium=email&utm_source=sendgrid.com" class="cert-link" target="_blank">View Certificate <i class="fas fa-arrow-right"></i></a>
-                    </div>
                    
-                    <div class="certification-card">
-                        <div class="certification-icon">
-                            <img src="js.png" alt="Js Logo" style="width: 150px; height: 150px; object-fit: contain;">
-                        </div>
-                        <h3>JavaScript for Beginners</h3>
-                        <p>Scaler</p>
-                        <a href="https://moonshot.scaler.com/s/li/op-ioyjLmj" class="cert-link" target="_blank">View Certificate <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                    
                    
                     <div class="certification-card">
                         <div class="certification-icon">
@@ -1648,23 +1717,8 @@
                         <a href="https://www.linkedin.com/in/cheerla-shamith-a420472a0/details/certifications/1739714033811/single-media-viewer/?profileId=ACoAAEie-RIBjBfdHRGbZ_tWHR5ddTr1S1zit1Y" class="cert-link" target="_blank">View Certificate <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="certification-card">
-                        <div class="certification-icon">
-                            <img src="microsoft.jpg" alt="Microsoft Logo" style="width: 150px; height: 150px; object-fit: contain;">
-                        </div>
-                        <h3>Microsoft Power BI - Level Up Data analysis & Visualisation</h3>
-                        <p>Udemy</p>
-                        <a href="https://www.udemy.com/certificate/UC-42c958ca-b2b2-4378-bcb7-34a4e95012d1/?utm_campaign=email&utm_medium=email&utm_source=sendgrid.com" class="cert-link" target="_blank">View Certificate <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                   
 
-                    <div class="certification-card">
-                        <div class="certification-icon">
-                        <img src="mongodb2.png" alt="MongoDB Logo" style="width: 150px; height: 150px; object-fit: contain;">
-                        </div>
-                        <h3>MongoDB Atlas</h3>
-                        <p>MongoDB</p>
-                        <a href="https://learn.mongodb.com/c/ZKCN2MR_St2lgPvxdobJTw" class="cert-link" target="_blank">View Certificate <i class="fas fa-arrow-right"></i></a>
-                    </div>
                    
                     <div class="certification-card">
                         <div class="certification-icon">
